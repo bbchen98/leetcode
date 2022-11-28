@@ -1,14 +1,14 @@
-/*
+/**
  * 4 二维数组中的查找
+ * https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/
  */
 
 class Solution {
 public:
     bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
-        int n_rows = matrix.size();
-        if (n_rows == 0)
+        if (matrix.empty() or matrix[0].empty())
             return false;
-        int n_cols = matrix[0].size();
+        int n_rows = matrix.size(), n_cols = matrix[0].size();
 
         int row = 0, col = n_cols - 1;
         while (row < n_rows && col >= 0) {
