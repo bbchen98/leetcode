@@ -7,19 +7,25 @@
 class Solution {
 public:
     string replaceSpace(string s) {
-        int n_space = count(s.cbegin(), s.cend(), ' ');
-        int n_s = s.size();
-        s.resize(s.size() + 2 * n_space);
-        int i = n_s - 1, j = s.size() - 1;
-        while (i < j){
-            if (s[i] != ' ') {
-                s[j--] = s[i];
+        // count for space
+        int n_sp = 0;
+        for (int i = 0; i < s.size(); ++i)
+            if (s[i] == ' ')
+                ++n_sp;
+        // resize
+        int left = s.size() - 1;
+        s.resize(s.size() + 2 * n_sp);
+        int right = s.size() - 1;
+        // move
+        while (left >= 0) {
+            if (s[left] == ' ') {
+                s[right--] = '0';
+                s[right--] = '2';
+                s[right--] = '%';
             } else {
-                s[j--] = '0';
-                s[j--] = '2';
-                s[j--] = '%';
+                s[right--] = s[left];
             }
-            --i;
+            --left;
         }
         return s;
     }
